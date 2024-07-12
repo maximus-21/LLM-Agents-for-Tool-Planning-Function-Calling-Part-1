@@ -14,7 +14,7 @@ Planning involves breaking down a complex problem into simple and sequential sub
 
 ​                     **LLM Reasoning:**
 
-<img src = "https://github.com/user-attachments/assets/a2216210-ca21-472e-bfa0-92fc3f8bbaf6" width = 800 height = 800/>
+<img src = "https://github.com/user-attachments/assets/a2216210-ca21-472e-bfa0-92fc3f8bbaf6" />
 
 
 However, eliciting this reasoning is challenging as sometimes these LLMs tend to hallucinate. What is hallucination? Sometimes, LLMs perform the wrong reasoning or use a flawed concept in their solution, resulting in an incorrect answer. Still, they do it with confidence, which means they are not sure of the accurate reasoning, resulting in a false one, leading to a hallucinated answer. 
