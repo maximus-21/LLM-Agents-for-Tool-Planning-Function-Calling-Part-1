@@ -1,10 +1,10 @@
-### LLM Agents for Tool Planning and Function Calling - Part 1
+## LLM Agents for Tool Planning and Function Calling - Part 1
 
 This post is based on my work building efficient and reliable LLM agents for external tool usage. I will start with a brief intro on reasoning and planning with LLMs, and then we will move on to other cool stuff like tool usage and function calling with LLMs. The work started as one of the problem statements proposed by DevRev at Inter IIT Tech Meet 12.0, and later, we extended our work into a research paper. Here is the arxiv preprint of our work: **[SwissNYF: Tool grounded LLM Agents for Black Box Setting](https://arxiv.org/abs/2402.10051)**
 
 Ps: I will use tool/function/API interchangeably throughout this post.
 
-##### **Reasoning & Planning with LLMs**
+### **Reasoning & Planning with LLMs**
 
 Planning involves breaking down a complex problem into simple and sequential subproblems and solving them individually. These subproblems can be independent or sequential. In the latter case, the output of the previous steps is required as input to a current or subsequent step. Solving these subtasks involves some kind of reasoning, such as mathematical reasoning, performing operations, algebraic manipulation, etc., or conceptual or factual rationale. These reasoning are generally elicited from the internal memory of the LLMs based on the vast amount of data they are pre-trained on and also the different downstream tasks they are finetuned on. For example, you can finetune an LLM on various math problems to improve its mathematical reasoning abilities.
 
@@ -22,7 +22,7 @@ However, eliciting this reasoning is challenging as sometimes these LLMs tend to
 
 Different techniques have been developed to help improve LLM reasoning. Sometimes, one can finetune an LLM for a specific reasoning task. However, this requires a good amount of computing, which is not readily available. Other methodologies propose different prompting techniques. Detailed instruction helps LLM think better and provide more accurate reasoning. There has been a lot of work going around in this space. We will discuss some of them in the context of Tool Planning.
 
-##### **Tool Planning & Function Calling**
+### **Tool Planning & Function Calling**
 
 What is Tool Planning? Let's imagine you are going through the documentation of a framework. Let's take *PyTorch* as an example. Let's say you need to generate two *1D* tensors of *dim = 3*, one with all *0s* and the other with all *1s*, and then you have to perform the dot product of these two. You are still very naive with *PyTorch* and want to use a torch chatbot to help you. You give your query to the chatbot, which has access to the complete *PyTorch* documentation. This is a task of tool planning & function calling.
 
@@ -49,23 +49,23 @@ Here is the step-by-step breakdown of the tool planning and function calling for
 
      
 
-##### LLM Reasoning Methodologies
+### LLM Reasoning Methodologies
 
 There have been a lot of work that has been done and continues to be in improving the reasoning abilities of LLMs for various different tasks. Building reliable and efficient LLM Agents can help in various direction: Automating software development, Educational Purpose etc. I'll talk about some of the common approaches used.
 
-###### Chain of Thought Reasoning
+#### Chain of Thought Reasoning
 
 Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-thought (CoT) prompting enables complex reasoning capabilities through intermediate reasoning steps. The idea is to instruct the LLM to breakdown a complex problem into subproblems which individually are much asier to solve and use these solved sub answers to address the original question. It has been one of the most used reasoning techniques and almost all the papers proposing other alternatives use CoT as the baseline.
 
 <img src="C:\Users\dhruv\AppData\Roaming\Typora\typora-user-images\image-20240713010747547.png" alt="image-20240713010747547" style="zoom:67%;" />
 
-###### ReAct
+#### ReAct
 
 [Yao et al., 2022](https://arxiv.org/abs/2210.03629) introduced a framework named ReAct where LLMs are used to generate both *reasoning traces* and *task-specific actions* in an interleaved manner. React uses the *Thought*, *Action*, & *Observation* patterns in each step to perform coherent reasoning paths, eventually leading to the required answer. First, the LLM generates a thought for intermediate steps; for each thought, it selects one of the possible actions and gets an observation. For example, in the case of tool planning, LLM will think of using a particular tool (*thought*), which would then be called upon with appropriate arguments (*Action*), and then the tool response will be observed (*Observation*). This way, LLM can determine whether a particular tool is relevant to the user query. Here's an simple example of a React agent solving a simple maths problem using functions such as *multiply* & *add*.
 
 <img src="C:\Users\dhruv\AppData\Roaming\Typora\typora-user-images\image-20240713011907089.png" alt="image-20240713011907089" style="zoom:75%;" />
 
-**DFSDT**
+#### **DFSDT**
 
 Depth First Search-based Decision Tree (DFSDT) is a method used for solution path annotation that can handle multiple tools, calls, responses, and their errors. It was introduced by [Qin et al., 2023](https://arxiv.org/abs/2307.16789). DFSDT serves as a general decision-making strategy to enhance the reasoning capabilities of LLMs. It works by running a Depth First Search over a Tree of Thought which has several branches of *Thought* & *Action*. It keeps a track of errors encountered and broadens the search space by taking new actions while considering errors in previously executed chains. This ensures that multiple reasoning traces are explored, and the search is not jeopardized by any single failure. By expanding the search space, DFSDT can better solve those difficult, complex instructions that are unanswerable by the vanilla ReAct no matter how many times it is performed. At the same time, in hindsight, it may take an extremely long time to figure out the right chain of thought and end up spending a large number of tokens on failed trajectories.
 
