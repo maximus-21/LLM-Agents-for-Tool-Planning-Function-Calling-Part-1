@@ -80,4 +80,14 @@ Depth First Search-based Decision Tree (DFSDT) is a method used for solution pat
 
 These are some of the methodologies explored for enhancing the reasoning & planning abilities of LLMs in the context of Tool Reasoning. New approaches are being investigated, and much research has been done in this space. All the above three methods are traversal-based, i.e., they start with a root node and perform a search on the next relevant step, finally leading to a final answer. CoT and ReAct perform the next step search with a sample size of *1*, whereas in the case of DFSDT, the sample size is *>1* for the root node and *1* for all the subsequent nodes. Here, each node represents an intermediate step.
 
-This is all for part 1; I hope this gives you a brief idea about reasoning within LLMs and what it means in the context of Tool LLM Agents. In the next part, I'll go through the curious case of Black Box Setting with these tool agents and discuss our approach to tackling this exciting and vital scenario as presented in our work.
+### Black Box Tool Setting
+
+Now it's time to discuss about the most interesting part of our work and what made our work different from traditional tool reasoning. The abovementioned approaches although seems to be reliable results in failure in a unique scenario when they don't actually have access to API/Tool calls.
+
+Imagine you are a CTO of a big DevOps company, and you want to hire a team of external engineers to build you an LLM Agent that can cohere to a user query and perform efficient Tool Planning & Reasoning. The team that you hired comes to you and says Hey, Mr. D., our team believed using a reliable approach like DFSDT would do your job; we would need access to all your tools and APIs. Now, take a minute and think this through: Would you want to give this bunch of engineers access to all your organization's private APIs?? Think of all the privacy scenarios and also about sensitive APIs such as deletion, which, if called by mistake during the exploration of the planning path, might erase some vital information from your database.
+
+Welcome to the real world, kiddos; it's precisely what happened with us during the Tech Meet; we were not provided with actual APIs but only their descriptions. Our job was to come up with an approach that doesn't use actual API calls, results in excellent accuracy, and is cost-efficient. The abovementioned approaches are traversal-based, thrive on exploration, resulting in a colossal token count, and are not cost-efficient.
+
+### Conclusion
+
+This is all for part 1; I hope this gives you a brief idea about reasoning within LLMs and what it means in the context of Tool LLM Agents. I also introduced you to the black box setting; I would like you to sit and think about its impact and its importance in real-world scenarios. In the next part, I'll go through our approach to tackling this exciting and essential scenario of the Black Box Setting as presented in our work.
