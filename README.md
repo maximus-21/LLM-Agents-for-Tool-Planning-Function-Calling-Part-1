@@ -1,4 +1,4 @@
-## _LLM Agents for Tool Planning and Function Calling - Part 1_
+## _LLM Agents for Tool Planning & Function Calling - Part 1_
 
 This post is based on my work building efficient and reliable LLM agents for external tool usage. I will start with a brief intro on reasoning and planning with LLMs, and then we will move on to other cool stuff like tool usage and function calling with LLMs. The work started as one of the problem statements proposed by DevRev at Inter IIT Tech Meet 12.0, and later, we extended our work into a research paper. Here is the arxiv preprint of our work: **[SwissNYF: Tool grounded LLM Agents for Black Box Setting](https://arxiv.org/abs/2402.10051)**
 
