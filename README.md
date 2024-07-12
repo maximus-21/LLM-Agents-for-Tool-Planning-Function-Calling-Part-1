@@ -10,7 +10,7 @@ Planning involves breaking down a complex problem into simple and sequential sub
 
 ​                    **Mathematical Query:**
 
-<img src = "https://github.com/user-attachments/assets/42c8720e-0d70-4000-a43c-39cb672bc5fe" width = 900/>
+<img src = "https://github.com/user-attachments/assets/42c8720e-0d70-4000-a43c-39cb672bc5fe" width = 1200/>
 
 ​                     **LLM Reasoning:**
 
@@ -28,7 +28,7 @@ What is Tool Planning? Let's imagine you are going through the documentation of 
 First, the query will be passed to a retriever, which, using some kind of similarity metric, will narrow down the documentation into, let's say, *2-3* pages containing relevant torch functions that may help solve the query. The role of the retriever is to narrow down the search space for the LLM while performing planning and reasoning. This is generally based on similarity between the embeddings of the documents and the user query.
 
 
-<img src = "https://github.com/user-attachments/assets/93ce920d-6308-470e-bc4e-ad9e2c78e7a9" width = 750/>
+<img src = "https://github.com/user-attachments/assets/93ce920d-6308-470e-bc4e-ad9e2c78e7a9" width = 800/>
 
 
 Now the query and these retrieved pages are given to an LLM (Planner) with some customized prompt, and the LLM has to select the relevant functions from the retrieved pages, decide the order in which they must be implemented, and choose the appropriate argument values for each of these functions to address the query completely. Deciding this order of implementation is what we refer to as Tool Planning, and filling the appropriate argument values is what we call function calling. 
@@ -59,7 +59,7 @@ There have been a lot of work that has been done and continues to be in improvin
 Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-thought (CoT) prompting enables complex reasoning capabilities through intermediate reasoning steps. The idea is to instruct the LLM to breakdown a complex problem into subproblems which individually are much asier to solve and use these solved sub answers to address the original question. It has been one of the most used reasoning techniques and almost all the papers proposing other alternatives use CoT as the baseline.
 
 
-<img src = "https://github.com/user-attachments/assets/33f12494-5bc7-46cc-9f9c-82080a48f2c1" width = 650/>
+<img src = "https://github.com/user-attachments/assets/33f12494-5bc7-46cc-9f9c-82080a48f2c1" width = 700/>
 
 
 ### ReAct
@@ -75,7 +75,7 @@ Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-tho
 Depth First Search-based Decision Tree (DFSDT) is a method used for solution path annotation that can handle multiple tools, calls, responses, and their errors. It was introduced by [Qin et al., 2023](https://arxiv.org/abs/2307.16789). DFSDT serves as a general decision-making strategy to enhance the reasoning capabilities of LLMs. It works by running a Depth First Search over a Tree of Thought which has several branches of *Thought* & *Action*. It keeps a track of errors encountered and broadens the search space by taking new actions while considering errors in previously executed chains. This ensures that multiple reasoning traces are explored, and the search is not jeopardized by any single failure. By expanding the search space, DFSDT can better solve those difficult, complex instructions that are unanswerable by the vanilla ReAct no matter how many times it is performed. At the same time, in hindsight, it may take an extremely long time to figure out the right chain of thought and end up spending a large number of tokens on failed trajectories.
 
 
-<img src = "https://github.com/user-attachments/assets/ef40ec02-343b-4e0b-891f-abba7da14e34" width = 600/>
+<img src = "https://github.com/user-attachments/assets/ef40ec02-343b-4e0b-891f-abba7da14e34" width = 700/>
 
 
 These are some of the methodologies explored for enhancing the reasoning & planning abilities of LLMs in the context of Tool Reasoning. New approaches are being investigated, and much research has been done in this space. All the above three methods are traversal-based, i.e., they start with a root node and perform a search on the next relevant step, finally leading to a final answer. CoT and ReAct perform the next step search with a sample size of *1*, whereas in the case of DFSDT, the sample size is *>1* for the root node and *1* for all the subsequent nodes. Here, each node represents an intermediate step.
