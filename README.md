@@ -59,7 +59,7 @@ There have been a lot of work that has been done and continues to be in improvin
 Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-thought (CoT) prompting enables complex reasoning capabilities through intermediate reasoning steps. The idea is to instruct the LLM to breakdown a complex problem into subproblems which individually are much asier to solve and use these solved sub answers to address the original question. It has been one of the most used reasoning techniques and almost all the papers proposing other alternatives use CoT as the baseline.
 
 
-<img src = "https://github.com/user-attachments/assets/33f12494-5bc7-46cc-9f9c-82080a48f2c1" width = 800/>
+<img src = "https://github.com/user-attachments/assets/33f12494-5bc7-46cc-9f9c-82080a48f2c1" width = 700/>
 
 
 ### ReAct
