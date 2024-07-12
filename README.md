@@ -10,7 +10,7 @@ Planning involves breaking down a complex problem into simple and sequential sub
 
 ​                    **Mathematical Query:**
 
-<img src = "https://github.com/user-attachments/assets/42c8720e-0d70-4000-a43c-39cb672bc5fe"  width="900" height="400" />
+<img src = "https://github.com/user-attachments/assets/42c8720e-0d70-4000-a43c-39cb672bc5fe"  width="500" height="200" />
 
 ​                     **LLM Reasoning:**
 
