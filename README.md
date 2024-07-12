@@ -10,7 +10,7 @@ Planning involves breaking down a complex problem into simple and sequential sub
 
 ​                    **Mathematical Query:**
 
-![image](https://github.com/user-attachments/assets/42c8720e-0d70-4000-a43c-39cb672bc5fe)
+![image](https://github.com/user-attachments/assets/42c8720e-0d70-4000-a43c-39cb672bc5fe = 250x250)
 
 ​                     **LLM Reasoning:**
 
@@ -72,7 +72,8 @@ Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-tho
 
 Depth First Search-based Decision Tree (DFSDT) is a method used for solution path annotation that can handle multiple tools, calls, responses, and their errors. It was introduced by [Qin et al., 2023](https://arxiv.org/abs/2307.16789). DFSDT serves as a general decision-making strategy to enhance the reasoning capabilities of LLMs. It works by running a Depth First Search over a Tree of Thought which has several branches of *Thought* & *Action*. It keeps a track of errors encountered and broadens the search space by taking new actions while considering errors in previously executed chains. This ensures that multiple reasoning traces are explored, and the search is not jeopardized by any single failure. By expanding the search space, DFSDT can better solve those difficult, complex instructions that are unanswerable by the vanilla ReAct no matter how many times it is performed. At the same time, in hindsight, it may take an extremely long time to figure out the right chain of thought and end up spending a large number of tokens on failed trajectories.
 
-<img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXekHPIQYJV2--ixEP2Gwz7jKMHe84aB8Um_G37q4G3bxlILVp9OzeKeL_5eXMix1_y9G36AWXskgT5gZBfYrzxsamGmd0egczP1RZc6cEQwPkf-AKVSQP0G0NmzGkY7VFG9M7Zz-9eEofK3FzpjLnZCGyCM?key=gF1nGbbhQEuFiFBmLe7kUw" alt="img" style="zoom:80%;" />
+![image](https://github.com/user-attachments/assets/b2093d3d-e9f8-445e-86d2-0f47443f067e)
+
 
 These are some of the methodologies explored for enhancing the reasoning & planning abilities of LLMs in the context of Tool Reasoning. New approaches are being investigated, and much research has been done in this space. All the above three methods are traversal-based, i.e., they start with a root node and perform a search on the next relevant step, finally leading to a final answer. CoT and ReAct perform the next step search with a sample size of *1*, whereas in the case of DFSDT, the sample size is *>1* for the root node and *1* for all the subsequent nodes. Here, each node represents an intermediate step.
 
