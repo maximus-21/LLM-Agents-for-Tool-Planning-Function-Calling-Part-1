@@ -67,7 +67,7 @@ Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-tho
 [Yao et al., 2022](https://arxiv.org/abs/2210.03629) introduced a framework named ReAct where LLMs are used to generate both *reasoning traces* and *task-specific actions* in an interleaved manner. React uses the *Thought*, *Action*, & *Observation* patterns in each step to perform coherent reasoning paths, eventually leading to the required answer. First, the LLM generates a thought for intermediate steps; for each thought, it selects one of the possible actions and gets an observation. For example, in the case of tool planning, LLM will think of using a particular tool (*thought*), which would then be called upon with appropriate arguments (*Action*), and then the tool response will be observed (*Observation*). This way, LLM can determine whether a particular tool is relevant to the user query. Here's an simple example of a React agent solving a simple maths problem using functions such as *multiply* & *add*.
 
 
-<img src = "https://github.com/user-attachments/assets/6ca472af-d7b3-407a-b4d1-278e537bccae" width = 700/>
+<img src = "https://github.com/user-attachments/assets/6ca472af-d7b3-407a-b4d1-278e537bccae" width = 600/>
 
 
 ### **DFSDT**
@@ -75,7 +75,7 @@ Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-tho
 Depth First Search-based Decision Tree (DFSDT) is a method used for solution path annotation that can handle multiple tools, calls, responses, and their errors. It was introduced by [Qin et al., 2023](https://arxiv.org/abs/2307.16789). DFSDT serves as a general decision-making strategy to enhance the reasoning capabilities of LLMs. It works by running a Depth First Search over a Tree of Thought which has several branches of *Thought* & *Action*. It keeps a track of errors encountered and broadens the search space by taking new actions while considering errors in previously executed chains. This ensures that multiple reasoning traces are explored, and the search is not jeopardized by any single failure. By expanding the search space, DFSDT can better solve those difficult, complex instructions that are unanswerable by the vanilla ReAct no matter how many times it is performed. At the same time, in hindsight, it may take an extremely long time to figure out the right chain of thought and end up spending a large number of tokens on failed trajectories.
 
 
-<img src = "https://github.com/user-attachments/assets/ef40ec02-343b-4e0b-891f-abba7da14e34" width = 600/>
+<img src = "https://github.com/user-attachments/assets/ef40ec02-343b-4e0b-891f-abba7da14e34" width = 650/>
 
 
 These are some of the methodologies explored for enhancing the reasoning & planning abilities of LLMs in the context of Tool Reasoning. New approaches are being investigated, and much research has been done in this space. All the above three methods are traversal-based, i.e., they start with a root node and perform a search on the next relevant step, finally leading to a final answer. CoT and ReAct perform the next step search with a sample size of *1*, whereas in the case of DFSDT, the sample size is *>1* for the root node and *1* for all the subsequent nodes. Here, each node represents an intermediate step.
