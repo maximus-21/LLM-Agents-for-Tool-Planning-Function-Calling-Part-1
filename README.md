@@ -64,7 +64,7 @@ Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-tho
 
 [Yao et al., 2022](https://arxiv.org/abs/2210.03629) introduced a framework named ReAct where LLMs are used to generate both *reasoning traces* and *task-specific actions* in an interleaved manner. React uses the *Thought*, *Action*, & *Observation* patterns in each step to perform coherent reasoning paths, eventually leading to the required answer. First, the LLM generates a thought for intermediate steps; for each thought, it selects one of the possible actions and gets an observation. For example, in the case of tool planning, LLM will think of using a particular tool (*thought*), which would then be called upon with appropriate arguments (*Action*), and then the tool response will be observed (*Observation*). This way, LLM can determine whether a particular tool is relevant to the user query. Here's an simple example of a React agent solving a simple maths problem using functions such as *multiply* & *add*.
 
-<img src = "https://github.com/user-attachments/assets/6ca472af-d7b3-407a-b4d1-278e537bccae" width = 800/>
+<img src = "https://github.com/user-attachments/assets/6ca472af-d7b3-407a-b4d1-278e537bccae" width = 700/>
 
 
 #### **DFSDT**
