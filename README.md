@@ -10,11 +10,11 @@ Planning involves breaking down a complex problem into simple and sequential sub
 
 ​                    **Mathematical Query:**
 
-<img src="C:\Users\dhruv\AppData\Roaming\Typora\typora-user-images\image-20240713004954178.png" alt="image-20240713004954178" style="zoom:80%;" />
+![image](https://github.com/user-attachments/assets/42c8720e-0d70-4000-a43c-39cb672bc5fe)
 
 ​                     **LLM Reasoning:**
 
-<img src="C:\Users\dhruv\AppData\Roaming\Typora\typora-user-images\image-20240713005036254.png" alt="image-20240713005036254" style="zoom:80%;" />
+![image](https://github.com/user-attachments/assets/a2216210-ca21-472e-bfa0-92fc3f8bbaf6)
 
 
 
@@ -28,7 +28,8 @@ What is Tool Planning? Let's imagine you are going through the documentation of 
 
 First, the query will be passed to a retriever, which, using some kind of similarity metric, will narrow down the documentation into, let's say, *2-3* pages containing relevant torch functions that may help solve the query. The role of the retriever is to narrow down the search space for the LLM while performing planning and reasoning. This is generally based on similarity between the embeddings of the documents and the user query.
 
-<img src="C:\Users\dhruv\AppData\Roaming\Typora\typora-user-images\image-20240713004155619.png" alt="image-20240713004155619" style="zoom:70%;" />
+![image](https://github.com/user-attachments/assets/93ce920d-6308-470e-bc4e-ad9e2c78e7a9)
+
 
 Now the query and these retrieved pages are given to an LLM (Planner) with some customized prompt, and the LLM has to select the relevant functions from the retrieved pages, decide the order in which they must be implemented, and choose the appropriate argument values for each of these functions to address the query completely. Deciding this order of implementation is what we refer to as Tool Planning, and filling the appropriate argument values is what we call function calling. 
 
@@ -57,13 +58,15 @@ There have been a lot of work that has been done and continues to be in improvin
 
 Introduced in [Wei et al. (2022)](https://arxiv.org/abs/2201.1190), chain-of-thought (CoT) prompting enables complex reasoning capabilities through intermediate reasoning steps. The idea is to instruct the LLM to breakdown a complex problem into subproblems which individually are much asier to solve and use these solved sub answers to address the original question. It has been one of the most used reasoning techniques and almost all the papers proposing other alternatives use CoT as the baseline.
 
-<img src="C:\Users\dhruv\AppData\Roaming\Typora\typora-user-images\image-20240713010747547.png" alt="image-20240713010747547" style="zoom:67%;" />
+![image](https://github.com/user-attachments/assets/33f12494-5bc7-46cc-9f9c-82080a48f2c1)
+
 
 #### ReAct
 
 [Yao et al., 2022](https://arxiv.org/abs/2210.03629) introduced a framework named ReAct where LLMs are used to generate both *reasoning traces* and *task-specific actions* in an interleaved manner. React uses the *Thought*, *Action*, & *Observation* patterns in each step to perform coherent reasoning paths, eventually leading to the required answer. First, the LLM generates a thought for intermediate steps; for each thought, it selects one of the possible actions and gets an observation. For example, in the case of tool planning, LLM will think of using a particular tool (*thought*), which would then be called upon with appropriate arguments (*Action*), and then the tool response will be observed (*Observation*). This way, LLM can determine whether a particular tool is relevant to the user query. Here's an simple example of a React agent solving a simple maths problem using functions such as *multiply* & *add*.
 
-<img src="C:\Users\dhruv\AppData\Roaming\Typora\typora-user-images\image-20240713011907089.png" alt="image-20240713011907089" style="zoom:75%;" />
+![image](https://github.com/user-attachments/assets/6ca472af-d7b3-407a-b4d1-278e537bccae)
+
 
 #### **DFSDT**
 
